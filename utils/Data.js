@@ -2,6 +2,7 @@ const data = {
     products: [
         {
             name: "Formal Shirt",
+            slug: "formal-shirt",
             category: "Shirt",
             image: "/images/shirt1.jpg",
             price: 400,
@@ -13,6 +14,7 @@ const data = {
         },
         {
             name: "Fit Shirt",
+            slug: "fit-shirt",
             category: "Shirt",
             image: "/images/shirt2.jpg",
             price: 800,
@@ -24,6 +26,7 @@ const data = {
         },
         {
             name: "Partywear Shirt",
+            slug: "partywear-shirt",
             category: "Shirt",
             image: "/images/shirt3.jpg",
             price: 1000,
@@ -35,6 +38,7 @@ const data = {
         },
         {
             name: "Formal Pants",
+            slug: "formal-pants",
             category: "Pants",
             image: "/images/pants1.jpg",
             price: 700,
@@ -46,6 +50,7 @@ const data = {
         },
         {
             name: "Jogger Pants",
+            slug: "jogger-pants",
             category: "Pants",
             image: "/images/pants2.jpg",
             price: 600,
