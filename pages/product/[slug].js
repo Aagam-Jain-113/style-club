@@ -1,15 +1,13 @@
-import { useRouter } from 'next/router'
 import React from 'react'
-import Data from '../../utils/Data'
 import Layout from '../../components/Layout'
 import NextLink from 'next/link';
 import { Button, Grid, Link, List, ListItem, Typography, Card } from '@material-ui/core';
 import Image from 'next/image'
+import Product from '../../models/Product';
+import db from '../../utils/db';
 
-export default function ProductScreen() {
-    const router = useRouter();
-    const { slug } = router.query;
-    const product = Data.products.find(a => a.slug == slug);
+export default function ProductScreen(props) {
+    const {product} = props;
     if (!product) {
         return <div>Product Not Found</div>
     }
@@ -64,7 +62,7 @@ export default function ProductScreen() {
                                         <Typography>Status: </Typography>
                                     </Grid>
                                     <Grid item xs={6}>
-                                        <Typography>{product.countInStock > 0 ? "In stock": "Out of stock"} </Typography>
+                                        <Typography>{product.countInStock > 0 ? "In stock" : "Out of stock"} </Typography>
                                     </Grid>
                                 </Grid>
                             </ListItem>
@@ -72,9 +70,23 @@ export default function ProductScreen() {
                                 <Button fullWidth variant="contained" color="primary">Add to cart</Button>
                             </ListItem>
                         </List>
-                    </Card>   
+                    </Card>
                 </Grid>
             </Grid>
         </Layout>
     )
+}
+
+export async function getServerSideProps(context) {
+    const {params} = context;
+    const {slug} = params;
+    await db.connect();
+    const product = await Product.findOne({slug}).lean();
+    await db.disconnect();
+    return {
+        props: {
+            product: db.convertDocToObj(product),
+        }
+
+    }
 }

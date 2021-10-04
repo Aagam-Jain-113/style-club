@@ -1,14 +1,16 @@
 import { Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography, Button } from '@material-ui/core';
 import Layout from '../components/Layout'
-import data from '../utils/Data'
 import NextLink from 'next/link'
+import db from '../utils/db'
+import Product from '../models/Product';
 
-export default function Home() {
+export default function Home(props) {
+  const {products} = props;
   return (
     <Layout>
       <div className="my-10">
         <Grid container spacing={3}>
-          {data.products.map((product) => {
+          {products.map((product) => {
             return (
               <Grid item md={4} key={product.name}>
                 <Card>
@@ -36,4 +38,16 @@ export default function Home() {
       </div>
     </Layout>
   )
+}
+
+export async function getServerSideProps(){
+  await db.connect();
+  const products = await Product.find({}).lean();
+  await db.disconnect();
+  return{
+    props: {
+      products: products.map(db.convertDocToObj),
+    }
+    
+  }
 }
