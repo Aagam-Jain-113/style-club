@@ -6,8 +6,7 @@ import NextLink from 'next/link'
 export default function Home() {
   return (
     <Layout>
-      <div>
-        <h1 className="text-3xl">Style Club</h1>
+      <div className="my-10">
         <Grid container spacing={3}>
           {data.products.map((product) => {
             return (
@@ -27,7 +26,7 @@ export default function Home() {
                   </NextLink>
                   <CardActions>
                     <Typography> ${product.price} </Typography>
-                    <Button size="small" color="primary">Add to Cart</Button>
+                    <Button size="small" color="primary" className="text-white">Add to Cart</Button>
                   </CardActions>
                 </Card>
               </Grid>
