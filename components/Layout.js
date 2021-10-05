@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import Head from 'next/head'
-import { AppBar, Container, createTheme, Link, Toolbar, Typography, ThemeProvider, CssBaseline, Switch } from '@material-ui/core'
+import { AppBar, Container, createTheme, Link, Toolbar, Badge, Typography, ThemeProvider, CssBaseline, Switch } from '@material-ui/core'
 import useStyles from '../utils/styles'
 import NextLink from 'next/link'
 import { Store } from '../utils/Store'
@@ -8,7 +8,7 @@ import Cookies from 'js-cookie';
 
 export default function Layout({ title, children, description }) {
     const { state, dispatch } = useContext(Store);
-    const { darkMode } = state;
+    const { darkMode, cart } = state;
     const theme = createTheme({
         typography: {
             h1: {
@@ -23,7 +23,7 @@ export default function Layout({ title, children, description }) {
             },
             body1: {
                 fontWeight: "normal",
-            }, 
+            },
         },
         palette: {
             type: darkMode ? 'dark' : 'light',
@@ -45,7 +45,7 @@ export default function Layout({ title, children, description }) {
         <div>
             <Head>
                 <title>{title ? `${title} - Style Club` : "Style Club"}</title>
-                {description && <meta name="description" content={description}> </meta>}
+                {description && <meta name="description" content={description}></meta>}
             </Head>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
@@ -63,7 +63,7 @@ export default function Layout({ title, children, description }) {
                         ></Switch>
                         <NextLink href="/cart" passHref>
                             <Link>
-                                Cart
+                                {(cart.cartItems.length > 0) ? <Badge color="secondary" badgeContent={cart.cartItems.length}>Cart</Badge> : 'Cart'}
                             </Link>
                         </NextLink>
                         <NextLink href="/login" passHref>
