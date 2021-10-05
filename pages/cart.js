@@ -6,9 +6,11 @@ import NextLink from 'next/link'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 function CartScreen() {
     const { state, dispatch } = React.useContext(Store);
+    const router = useRouter();
     const { cart: { cartItems } } = state;
     const updateCartHandler = async (item, quantity) =>{
         const { data } = await axios.get(`/api/products/${item._id}`);
@@ -20,6 +22,9 @@ function CartScreen() {
     }
     const removeItemHandler = (item)=>{
         dispatch({type: "CART_REMOVE_ITEM" , payload: item });
+    }
+    const checkoutHandler = ()=>{
+        router.push('/shipping');
     }
 
     return (
@@ -85,7 +90,7 @@ function CartScreen() {
                                     </Typography>
                                 </ListItem>
                                 <ListItem>
-                                    <Button color="primary" variant="contained" fullWidth>
+                                    <Button color="primary" variant="contained" fullWidth onClick={checkoutHandler}>
                                         Check out
                                     </Button>
                                 </ListItem>

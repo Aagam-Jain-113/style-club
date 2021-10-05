@@ -20,6 +20,14 @@ const useStyles = makeStyles({
     },
     grow: {
         flexGrow: 1,
+    },
+    form: {
+        maxWidth: "800px",
+        margin: "0 auto",
+    },
+    navbarButton: {
+        color: "#fff",
+        textTransform: 'initial',
     }
 
 })
