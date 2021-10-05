@@ -27,7 +27,7 @@ export default function Home(props) {
                     </CardActionArea>
                   </NextLink>
                   <CardActions>
-                    <Typography> ${product.price} </Typography>
+                    <Typography> ₹{product.price} </Typography>
                     <Button size="small" color="primary" className="text-white">Add to Cart</Button>
                   </CardActions>
                 </Card>
