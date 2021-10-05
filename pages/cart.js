@@ -4,8 +4,9 @@ import Layout from '../components/Layout';
 import { Store } from '../utils/Store'
 import NextLink from 'next/link'
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
 
-export default function CartScreen() {
+function CartScreen() {
     const { state } = React.useContext(Store);
     const { cart: { cartItems } } = state;
 
@@ -30,7 +31,7 @@ export default function CartScreen() {
                                 </TableHead>
                                 <TableBody>
                                     {cartItems.map((item)=>(
-                                        <TableRow key={item.id}>
+                                        <TableRow key={item._id}>
                                             <TableCell>
                                                 <NextLink href={`/product/${item.slug}`} passHref>
                                                     <Link>
@@ -63,7 +64,7 @@ export default function CartScreen() {
                             </Table>
                         </TableContainer>
                     </Grid>
-                    <Grid md={3} xs={12}>
+                    <Grid item md={3} xs={12}>
                         <Card>
                             <List>
                                 <ListItem>
@@ -84,3 +85,5 @@ export default function CartScreen() {
         </Layout>
     )
 }
+
+export default dynamic(()=> Promise.resolve(CartScreen), {ssr: false})
