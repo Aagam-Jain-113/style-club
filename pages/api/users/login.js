@@ -14,7 +14,7 @@ handler.post(async (req,res) => {
         const token = signToken(user);
         res.send({token, _id: user._id, name: user.name, email: user.email, isAdmin: user.isAdmin});
     }else{
-        res.status(401).send({message: 'Invalid User or Password'})
+        res.status(401).send({message: 'Invalid Email or Password'})
     }
 });
 
