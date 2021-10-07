@@ -45,7 +45,7 @@ export default function Register() {
         }
     }
     return (
-        <Layout title="Login">
+        <Layout title="Register">
             <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
                 <Typography component="h1" variant="h1">
                     Register
