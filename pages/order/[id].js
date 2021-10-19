@@ -8,10 +8,8 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router';
 import useStyles from '../../utils/styles';
 import CheckoutWizard from '../../components/CheckoutWizard';
-import { useSnackbar } from 'notistack';
 import axios from 'axios';
 import { getError } from '../../utils/error';
-import Cookies from 'js-cookie';
 
 function reducer(state, action) {
     switch (action.type) {
