@@ -1,8 +1,7 @@
-import { Button, Link, List, ListItem, TextField, Typography } from '@material-ui/core'
+import { Button, List, ListItem, TextField, Typography } from '@material-ui/core'
 import React from 'react'
 import Layout from '../components/Layout'
 import useStyles from '../utils/styles'
-import NextLink from 'next/link'
 import { Store } from '../utils/Store'
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
@@ -15,7 +14,7 @@ export default function Shipping() {
     const router = useRouter();
     const { redirect } = router.query;
     const { state, dispatch } = React.useContext(Store);
-    const { userInfo, cart: {shippingAddress} } = state;
+    const { userInfo, cart: { shippingAddress } } = state;
     React.useEffect(() => {
         if (!userInfo) {
             router.push('/login?redirect=/shipping');
@@ -26,10 +25,10 @@ export default function Shipping() {
         setValue('phoneNumber', shippingAddress.phoneNumber);
     }, []);
     const classes = useStyles();
-    const submitHandler = ({fullName, address, city, phoneNumber}) => {
-            dispatch({ type: 'SAVE_DELIVERY_ADDRESS', payload: {fullName, address, city, phoneNumber} });
-            Cookies.set('shippingAddress', {fullName, address, city, phoneNumber});
-            router.push('/payment');
+    const submitHandler = ({ fullName, address, city, phoneNumber }) => {
+        dispatch({ type: 'SAVE_DELIVERY_ADDRESS', payload: { fullName, address, city, phoneNumber } });
+        Cookies.set('shippingAddress', { fullName, address, city, phoneNumber });
+        router.push('/payment');
     }
     return (
         <Layout title="Delivery Address">

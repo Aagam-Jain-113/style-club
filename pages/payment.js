@@ -17,8 +17,8 @@ export default function Payment() {
         if(!paymentMethod){
             enqueueSnackbar('Payment method is required', {variant: 'error'});
         }else{
-            dispatch({type: "SAVE_PAYMENT_METHOD", payload: paymentMethod})
-            Cookies.set('paymentMethod', paymentMethod);
+            dispatch({type: "SAVE_PAYMENT_METHOD", payload: JSON.stringify(paymentMethod)})
+            Cookies.set('paymentMethod',  JSON.stringify(paymentMethod));
             router.push("/placeorder");
         }
     }
