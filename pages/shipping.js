@@ -14,7 +14,7 @@ export default function Shipping() {
     const router = useRouter();
     const { redirect } = router.query;
     const { state, dispatch } = React.useContext(Store);
-    const { userInfo, cart: { shippingAddress } } = state;
+    const { userInfo, cart: { shippingAddress }, } = state;
     React.useEffect(() => {
         if (!userInfo) {
             router.push('/login?redirect=/shipping');
@@ -26,8 +26,8 @@ export default function Shipping() {
     }, []);
     const classes = useStyles();
     const submitHandler = ({ fullName, address, city, phoneNumber }) => {
-        dispatch({ type: 'SAVE_DELIVERY_ADDRESS', payload: { fullName, address, city, phoneNumber } });
-        Cookies.set('shippingAddress', { fullName, address, city, phoneNumber });
+        dispatch({ type: 'SAVE_SHIPPING_ADDRESS', payload:{fullName, address, city, phoneNumber},});
+        Cookies.set('shippingAddress', {fullName, address, city, phoneNumber});
         router.push('/payment');
     }
     return (
@@ -35,7 +35,7 @@ export default function Shipping() {
             <CheckoutWizard activeStep={1} />
             <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
                 <Typography component="h1" variant="h1">
-                    Delivery Address
+                    Shipping Address
                 </Typography>
                 <List>
                     <ListItem>
