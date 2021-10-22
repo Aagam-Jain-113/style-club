@@ -7,6 +7,8 @@ import Product from '../models/Product';
 import { useRouter } from 'next/router';
 import { Store } from '../utils/Store';
 import axios from 'axios';
+require('dotenv').config();
+console.log(process.env.MONGODB_URI);
 
 export default function Home(props) {
   const router = useRouter();
