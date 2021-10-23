@@ -26,8 +26,8 @@ export default function Shipping() {
     }, []);
     const classes = useStyles();
     const submitHandler = ({ fullName, address, city, phoneNumber }) => {
-        dispatch({ type: 'SAVE_SHIPPING_ADDRESS', payload:{fullName, address, city, phoneNumber},});
-        Cookies.set('shippingAddress', {fullName, address, city, phoneNumber});
+        dispatch({ type: 'SAVE_SHIPPING_ADDRESS', payload: { fullName, address, city, phoneNumber }, });
+        Cookies.set('shippingAddress', JSON.stringify({ fullName, address, city, phoneNumber }));
         router.push('/payment');
     }
     return (
