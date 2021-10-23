@@ -52,6 +52,7 @@ function PlaceOrder() {
         }
         catch(err){
             setLoading(false);
+            console.log(err);
             enqueueSnackbar(getError(err), { variant: 'error'})
         }
     }
