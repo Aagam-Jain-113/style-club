@@ -49,13 +49,13 @@ export default function Layout({ title, children, description }) {
     }
     const loginMenuCloseHandler = (e, redirect) => {
         setAnchorEl(null);
-        if(redirect){
+        if (redirect) {
             router.push(redirect);
         }
     }
-    const logoutClickHandler = ()=>{
+    const logoutClickHandler = () => {
         setAnchorEl(null);
-        dispatch({type: 'USER_LOGOUT'});
+        dispatch({ type: 'USER_LOGOUT' });
         Cookies.remove('userInfo');
         Cookies.remove('cartItems');
         router.push('/');
@@ -102,10 +102,15 @@ export default function Layout({ title, children, description }) {
                                     open={Boolean(anchorEl)}
                                     onClose={loginMenuCloseHandler}
                                 >
-                                    <MenuItem onClick={(e)=>loginMenuCloseHandler(e, '/profile')}>Profile</MenuItem>
-                                    <MenuItem onClick={(e)=>loginMenuCloseHandler(e, '/order-history')}>
+                                    <MenuItem onClick={(e) => loginMenuCloseHandler(e, '/profile')}>Profile</MenuItem>
+                                    <MenuItem onClick={(e) => loginMenuCloseHandler(e, '/order-history')}>
                                         Order History
                                     </MenuItem>
+                                    {userInfo.isAdmin && (
+                                        <MenuItem onClick={(e) => loginMenuCloseHandler(e, '/admin/dashboard')}>
+                                            Admin Dashboard
+                                        </MenuItem>
+                                    )}
                                     <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>
                                 </Menu>
                             </>) :
