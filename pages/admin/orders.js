@@ -82,6 +82,11 @@ function AdminDashboard() {
                                     <ListItemText primary="Orders"></ListItemText>
                                 </ListItem>
                             </NextLink>
+                            <NextLink href="/admin/products" passHref>
+                                <ListItem button component="a">
+                                    <ListItemText primary="Products"></ListItemText>
+                                </ListItem>
+                            </NextLink>
                         </List>
                     </Card>
                 </Grid>
@@ -121,7 +126,7 @@ function AdminDashboard() {
                                                             {order.user ? order.user.name : 'DELETED USER'}
                                                         </TableCell>
                                                         <TableCell>{order.createdAt}</TableCell>
-                                                        <TableCell>${order.totalPrice}</TableCell>
+                                                        <TableCell>₹{order.totalPrice}</TableCell>
                                                         <TableCell>
                                                             {order.isPaid
                                                                 ? `paid at ${order.paidAt}`
